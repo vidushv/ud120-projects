@@ -24,7 +24,7 @@ from sklearn.metrics import accuracy_score
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
-svm = SVC(kernel = 'linear')
+svm = SVC(kernel = 'rbf', C=10000)
 t0 = time()
 svm.fit(features_train, labels_train)
 print "Time for training", round(time()-t0, 3), "s"
