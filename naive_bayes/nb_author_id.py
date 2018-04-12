@@ -15,14 +15,20 @@ from time import time
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
-
+# Complete naive bayes imports
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 ### features_train and features_test are the features for the training
 ### and testing datasets, respectively
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 
+gnb = GaussianNB()
+gnb.fit(features_train, labels_train)
 
+prediction = gnb.predict(features_test)
 
+print "Accuracy for Naive Bayes is ", accuracy_score(labels_test, prediction)
 
 #########################################################
 ### your code goes here ###
