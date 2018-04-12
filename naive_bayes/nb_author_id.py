@@ -24,9 +24,13 @@ from sklearn.metrics import accuracy_score
 features_train, features_test, labels_train, labels_test = preprocess()
 
 gnb = GaussianNB()
+t0 = time()
 gnb.fit(features_train, labels_train)
+print "Time for training", round(time()-t0, 3), "s"
 
+t1 = time()
 prediction = gnb.predict(features_test)
+print "Time for prediction", round(time()-t1, 3), "s"
 
 print "Accuracy for Naive Bayes is ", accuracy_score(labels_test, prediction)
 
