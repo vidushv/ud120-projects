@@ -23,7 +23,7 @@ from sklearn.metrics import accuracy_score
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
-Tree = tree.DecisionTreeClassifier(min_samples_split = 50)
+Tree = tree.DecisionTreeClassifier(min_samples_split = 40)
 t0 = time()
 Tree.fit(features_train, labels_train)
 print "Time for training", round(time()-t0, 3), "s"
