@@ -13,6 +13,9 @@ from time import time
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
+# Complete naive bayes imports
+from sklearn import tree
+from sklearn.metrics import accuracy_score
 
 ### features_train and features_test are the features for the training
 ### and testing datasets, respectively
@@ -20,6 +23,16 @@ from email_preprocess import preprocess
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
+Tree = tree.DecisionTreeClassifier(min_samples_split = 50)
+t0 = time()
+Tree.fit(features_train, labels_train)
+print "Time for training", round(time()-t0, 3), "s"
+
+t1 = time()
+prediction = Tree.predict(features_test)
+print "Time for prediction", round(time()-t1, 3), "s"
+
+print "Accuracy for decision tree is ", accuracy_score(labels_test, prediction)
 
 
 #########################################################
