@@ -14,11 +14,26 @@ sys.path.append("../tools/")
 from email_preprocess import preprocess
 
 
+# Complete naive bayes imports
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
 ### features_train and features_test are the features for the training
 ### and testing datasets, respectively
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 
+
+svm = SVC(kernel = 'linear')
+t0 = time()
+svm.fit(features_train, labels_train)
+print "Time for training", round(time()-t0, 3), "s"
+
+t1 = time()
+prediction = svm.predict(features_test)
+print "Time for prediction", round(time()-t1, 3), "s"
+
+print "Accuracy for SVM is ", accuracy_score(labels_test, prediction)
 
 
 
